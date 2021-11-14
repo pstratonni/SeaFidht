@@ -11,6 +11,7 @@ class Ship:
     def wound(self):
         self.life -= 1
 
+    @property
     def dots(self):
         if self.orientation == 'V':
             return [Dot(tuple(self.bow.dot[0], self.bow.dot[1] + j)) for j in range(self.length)]
