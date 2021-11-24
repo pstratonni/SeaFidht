@@ -11,6 +11,7 @@ class All (Player):
     def ask(self):
         idx=randint(0, len(self.targets)-1)
         dot=self.targets[idx]
+        print(f'Ход компьютера({dot.x, dot.y})')
         self.targets.pop(idx)
         return dot
 
