@@ -1,6 +1,11 @@
 class Dot:
-    def __init__(self, dot):
-        self.dot = dot
+    def __init__(self, x,y):
+        self.x = x
+        self.y = y
 
     def __eq__(self, other):
-        return self.dot[0] == other.dot[0] and other.dot[1] == self.dot[1]
+        return self.x == other.x and other.y == self.y
+
+    def __repr__(self):
+        return f'Dot({self.x}, {self.y})'
+
