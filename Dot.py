@@ -1,5 +1,5 @@
 class Dot:
-    def __init__(self, x,y):
+    def __init__(self, x, y):
         self.x = x
         self.y = y
 
@@ -8,4 +8,3 @@ class Dot:
 
     def __repr__(self):
         return f'Dot({self.x}, {self.y})'
-

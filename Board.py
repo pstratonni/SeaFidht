@@ -1,27 +1,30 @@
 from Dot import Dot
 from MyException import *
-from Ship import Ship
 
 
 class Board:
-    def __init__(self, hid):
-        self.board = [['-' for j in range(6)] for i in range(6)]
+    def __init__(self, hid=False, size=6):
+        self.board = [['-'] * size for i in range(size)]
         self.hid = hid
-
+        self.size = size
         self.count = 0
         self.busy = []
         self.ships = []
 
-    def render(self):
-        print('  |', end='\t')
-        for i in range(6):
-            print(f'{i + 1} |', end='\t')
-        print()
-        for i in range(6):
-            print(f'{i + 1} |', end='\t')
-            for j in range(6):
-                print(f'{self.board[i][j]} |', end='\t')
-            print()
+    def __str__(self):
+        field = ""
+        field += f'  |\t'
+        for i in range(self.size):
+            field += f'{i + 1} |\t'
+        field += '\n'
+        for i in range(self.size):
+            field += f'{i + 1} |\t'
+            for j in range(self.size):
+                field += f'{self.board[i][j]} |\t'
+            field += '\n'
+        if self.hid:
+            field = field.replace('■', '-')
+        return field
 
     def contour(self, ship, verb=False):
         for d in ship.dots:
@@ -36,15 +39,15 @@ class Board:
     def add_ship(self, ship):
         for dot in ship.dots:
             if self.out_field(dot.x, dot.y) or dot in self.busy:
-                raise ShipOutException()
+                raise BoardWrongShipException()
         for dot in ship.dots:
-            self.board[dot.x][dot.y] = 'S'
+            self.board[dot.x][dot.y] = '■'
             self.busy.append(dot)
         self.ships.append(ship)
         self.contour(ship)
 
     def out_field(self, x, y):
-        return not ((0 <= x < 6) and (0 <= y < 6))
+        return not ((0 <= x < self.size) and (0 <= y < self.size))
 
     def shoot(self, dot):
         if self.out_field(dot.x, dot.y):
