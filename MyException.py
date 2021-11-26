@@ -1,17 +1,17 @@
-class BoardOutException(Exception):
+class BoardWrongShipException(Exception):
+    pass
+
+
+class BoardOutException(BoardWrongShipException):
     @staticmethod
     def __str__():
         return f'Ты пальнул за приделы поля'
 
 
-class RepeatBordException(Exception):
+class RepeatBordException(BoardWrongShipException):
     @staticmethod
     def __str__():
         return f'Здесь уже воронка. Выбери другую цель'
-
-
-class BoardWrongShipException(Exception):
-    pass
 
 # class BowShipOutException(Exception):
 #     @staticmethod
