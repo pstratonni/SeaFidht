@@ -53,7 +53,7 @@ class Game:
                 break
             repeat = True
             while repeat:
-                print('Ход компьютера')
+                print('Ход противника')
                 repeat = self.ai.move()
                 self.render_field()
             if self.ai.enemy.count == 7:
