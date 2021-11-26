@@ -33,7 +33,7 @@ class AI(Player):
     def ask(self):
         idx = randint(0, len(self.targets) - 1)
         dot = self.targets[idx]
-        print(f'Ход компьютера({dot.x, dot.y})')
+        print(f'Ход компьютера({dot.x+1, dot.y+1})')
         self.targets.pop(idx)
         return dot
 

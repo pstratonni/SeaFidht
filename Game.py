@@ -18,14 +18,14 @@ class Game:
     def initial_board(self):
         ships_length = [3, 2, 2, 1, 1, 1, 1]
         board = Board(size=self.size)
-        attempts = 0
+        quantity = 0
         for length in ships_length:
             while True:
-                attempts += 1
-                if attempts > 2000:
+                quantity += 1
+                if quantity > 1000:
                     return None
                 ship = Ship(Dot(randint(0, self.size - 1), randint(0, self.size - 1)), length,
-                            'V' if not randint(0, 1) else 'H')
+                            'H' if randint(0, 1) else 'V')
                 try:
                     board.add_ship(ship)
                     break
@@ -61,12 +61,28 @@ class Game:
                 break
 
     def render_field(self):
-        print('Ваша доска')
+        print('Ваша гавань')
         print(self.player.board)
-        print('Доска Компьютера')
+        print('Залив противника')
         print(self.ai.board)
 
+    def greet(self):
+        greet = """
+            (*************************************)
+            (**    Приветствую тебя на игре     **)
+            (**          'Морской Бой'          **)
+            (!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!)
+            (** Стреляй по короблям противника, **)
+            (**     вводя координаты точки.     **)
+            (**     Первая это номер скоки      **)
+            (**     Вторая - номер столбца      **)
+            (**          У Д А Ч И !!!          **)
+            (*************************************)
+            """
+        print(greet)
+
     def start(self):
+        self.greet()
         self.loop()
 
 
